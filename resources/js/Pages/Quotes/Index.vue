@@ -46,6 +46,7 @@ const formatDate = (dateString) => {
         day: 'numeric'
     });
 };
+
 </script>
 
 <template>
@@ -141,7 +142,7 @@ const formatDate = (dateString) => {
                                                 <div class="flex items-center">
                                                     <div>
                                                         <div class="font-medium text-gray-900">{{ quote.project_name }}</div>
-                                                        <div class="mt-1 text-gray-500 text-sm line-clamp-1">{{ quote.project_description }}</div>
+                                                        {{ quote.project_description.length > 50 ? quote.project_description.substring(0, 50) + '...' : quote.project_description }}
                                                     </div>
                                                 </div>
                                             </td>

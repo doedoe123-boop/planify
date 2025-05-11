@@ -23,7 +23,10 @@ class QuoteRequest extends FormRequest
     {
         return [
             'project_name' => ['required', 'string', 'max:255'],
+            'industry' => ['nullable', 'string', 'max:100'],
             'project_description' => ['nullable', 'string'],
+            'business_goals' => ['nullable', 'string'],
+            'solution_overview' => ['nullable', 'string'],
             'website_type_id' => ['required', 'exists:website_types,id'],
             'selected_features' => ['required', 'array'],
             'selected_features.*' => ['exists:features,id'],
@@ -31,6 +34,8 @@ class QuoteRequest extends FormRequest
             'custom_features.*.name' => ['required_with:custom_features', 'string', 'max:255'],
             'custom_features.*.hours' => ['required_with:custom_features', 'integer', 'min:1'],
             'hourly_rate' => ['required', 'numeric', 'min:1'],
+            'business_value_points' => ['nullable', 'array'],
+            'business_value_points.*' => ['string'],
         ];
     }
 
@@ -42,6 +47,7 @@ class QuoteRequest extends FormRequest
             'custom_features.*.name.required_with' => 'Custom feature name is required.',
             'custom_features.*.hours.required_with' => 'Custom feature hours estimation is required.',
             'custom_features.*.hours.min' => 'Custom feature hours must be at least 1.',
+            'business_value_points.*.string' => 'Business value points must be text.',
         ];
     }
 }

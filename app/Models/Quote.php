@@ -14,16 +14,21 @@ class Quote extends Model
     protected $fillable = [
         'user_id',
         'project_name',
+        'industry',
         'project_description',
+        'business_goals',
+        'solution_overview',
         'website_type_id',
         'hourly_rate',
         'total_hours',
         'total_cost',
-        'custom_features'
+        'custom_features',
+        'business_value_points'
     ];
 
     protected $casts = [
         'custom_features' => 'array',
+        'business_value_points' => 'array',
         'hourly_rate' => 'decimal:2',
         'total_cost' => 'decimal:2',
         'total_hours' => 'integer'
@@ -47,6 +52,13 @@ class Quote extends Model
     public function selected_features(): BelongsToMany
     {
         return $this->belongsToMany(Feature::class, 'quote_features')
+            ->withTimestamps();
+    }
+    
+    public function tasks(): BelongsToMany
+    {
+        return $this->belongsToMany(Task::class, 'quote_tasks')
+            ->withPivot('custom_hours', 'included')
             ->withTimestamps();
     }
 } 

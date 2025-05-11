@@ -36,6 +36,9 @@ Route::middleware([
     Route::get('/quotes/create', [QuoteController::class, 'create'])->name('quotes.create');
     Route::post('/quotes', [QuoteController::class, 'store'])->name('quotes.store');
     Route::get('/quotes/{quote}', [QuoteController::class, 'show'])->name('quotes.show');
+    Route::put('/quotes/{quote}/tasks', [QuoteController::class, 'updateTasks'])->name('quotes.update_tasks');
+    Route::post('/quotes/suggest-features', [QuoteController::class, 'getSuggestedFeatures'])->name('quotes.suggest_features');
+    Route::get('/quotes/{quote}/pdf', [QuoteController::class, 'downloadPdf'])->name('quotes.pdf');
 
     // Proposals
     Route::get('/proposals', [ProposalController::class, 'index'])->name('proposals');

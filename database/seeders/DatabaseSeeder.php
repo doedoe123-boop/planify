@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             WebsiteTypeSeeder::class,
+            TaskSeeder::class,
+            BusinessValueAndDeliverablesSeeder::class,
         ]);
     }
 }

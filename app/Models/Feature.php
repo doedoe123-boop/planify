@@ -11,6 +11,7 @@ class Feature extends Model
         'name',
         'description',
         'estimated_hours',
+        'business_value',
         'is_custom',
     ];
 
@@ -21,6 +22,12 @@ class Feature extends Model
     public function websiteTypes(): BelongsToMany
     {
         return $this->belongsToMany(WebsiteType::class)
+            ->withTimestamps();
+    }
+    
+    public function tasks(): BelongsToMany
+    {
+        return $this->belongsToMany(Task::class)
             ->withTimestamps();
     }
 }
